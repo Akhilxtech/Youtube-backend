@@ -13,5 +13,9 @@ app.use(express.urlencoded({extended:true,limit:"50kb"}))// url se jo data ayega
 app.use(express.static("public"))// jo file upload krte ho like images favicon video anything usko apne server main rkhne ke liye config add karta hai
 app.use(cookieParser())
 
+// routes import
+import userRouter from "./routes/user.routes.js"
 
+// routes declaration
+app.use("/api/v1/users",userRouter)
 export default app;

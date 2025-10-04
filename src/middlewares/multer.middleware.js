@@ -10,5 +10,5 @@ const storage = multer.diskStorage({
 })
 
 export const upload = multer({ 
-    storage // in es 6 if the key and vaue name are same then we right like that
+    storage // in es 6 if the key and value name are same then we right like that
 })

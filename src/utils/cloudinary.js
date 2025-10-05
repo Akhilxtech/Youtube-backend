@@ -30,4 +30,23 @@ const uploadOnCloudinary=async (localFilePath)=>{
     }
 }
 
-export {uploadOnCloudinary}
+const deleteFromCloudinary=async(oldFileUrl)=>{
+   try {
+     if(!oldFileUrl){
+        return null;
+     }
+    const parts = oldFileUrl.split("/");
+    const fileNameWithExt = parts.pop(); // "abc123.jpg"
+    const folderPath = parts.slice(parts.indexOf("upload") + 1).join("/"); // "v1691234567/user_avatars"
+    const publicId = folderPath.replace(/^v\d+\//, "") + "/" + fileNameWithExt.split(".")[0]; // "user_avatars/abc123"
+
+
+
+    const response=await cloudinary.uploader.destroy(publicId);
+        return response;
+    } catch (error) {
+        return null;
+   }
+}
+
+export {uploadOnCloudinary,deleteFromCloudinary}
